@@ -7,7 +7,7 @@ export const usePlayer = () => {
   const { client } = useDojoSDK();
 
   const registerPlayer = useCallback(
-    async (account: Account | AccountInterface, username: string) => {
+    async (account: AccountInterface | undefined, username: string) => {
       try {
         const usernameFelt = stringToFelt(username);
         if (Array.isArray(usernameFelt)) {

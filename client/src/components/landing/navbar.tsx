@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import {
+  Connector,
+  useAccount,
   useConnect,
   useDisconnect,
-  useAccount,
-  Connector,
 } from "@starknet-react/core";
+import { useEffect, useState } from "react";
 import WalletModal from "../modal/walletConnectModal";
 
 import ControllerConnector from "@cartridge/connector/controller";
@@ -19,7 +19,9 @@ export function Navbar() {
   const { disconnect } = useDisconnect();
   const { address, isConnected } = useAccount();
 
-  const controller = connectors[2] as ControllerConnector;
+  const controller = connectors.find(
+    (c) => c.id === "controller"
+  ) as ControllerConnector;
 
   useEffect(() => {
     if (isConnected && address && controller) {

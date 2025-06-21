@@ -9,7 +9,7 @@ import { ReadyToPlay } from "@/components/landing/ready-to-play";
 import { Footer } from "@/components/layout/footer";
 import { usePlayer } from "@/hooks/dojo/usePlayer";
 import { useBubbles } from "@/hooks/use-bubbles";
-import { Account, constants, RpcProvider } from "starknet";
+import { useAccount } from "@starknet-react/core";
 
 export default function LandingPage() {
   const bubbles = useBubbles({
@@ -22,23 +22,13 @@ export default function LandingPage() {
     interval: 500,
   });
 
-  const { getPlayer } = usePlayer();
+  const { registerPlayer } = usePlayer();
+  const { account, isConnected } = useAccount();
 
   const handleCall = async () => {
     try {
-      const provider = new RpcProvider({
-        nodeUrl: "http://localhost:5050",
-      });
-
-      const account0 = new Account(
-        provider,
-        "0x13d9ee239f33fea4f8785b9e3870ade909e20a9599ae7cd62c1c292b73af1b7",
-        "0x1c9053c053edf324aec366a34c6901b1095b07af69495bffec7d7fe21effb1b",
-        undefined,
-        constants.TRANSACTION_VERSION.V3
-      );
-
-      const result = await getPlayer(account0.address);
+      if (!account || !isConnected) return alert("No account found");
+      const result = await registerPlayer(account, "sunday");
       console.log("result", result);
     } catch (error) {
       console.error("error", error);

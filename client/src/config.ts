@@ -9,16 +9,15 @@ export interface WalletConfig {
 }
 
 export const getWalletConfig = (): WalletConfig => {
-  const isDevelopment = process.env.NODE_ENV === "development";
+  const isDevelopment = import.meta.env.DEV;
 
-  // Explicitly check for the environment variable first
-  // Only default to Katana if the env var is not set AND we're in development
-  const useKatanaFromEnv = process.env.NEXT_PUBLIC_USE_KATANA;
+  // Use Vite environment variables instead of Next.js
+  const useKatanaFromEnv = import.meta.env.VITE_USE_KATANA;
 
   // Add detailed debugging
   console.log("🔍 Environment Variable Debug:");
-  console.log("  NODE_ENV:", process.env.NODE_ENV);
-  console.log("  NEXT_PUBLIC_USE_KATANA:", useKatanaFromEnv);
+  console.log("  NODE_ENV:", import.meta.env.NODE_ENV);
+  console.log("  VITE_USE_KATANA:", useKatanaFromEnv);
   console.log("  isDevelopment:", isDevelopment);
   console.log(
     "  useKatanaFromEnv !== undefined:",
@@ -29,18 +28,17 @@ export const getWalletConfig = (): WalletConfig => {
   const useKatanaAccounts =
     useKatanaFromEnv !== undefined
       ? useKatanaFromEnv === "true"
-      : isDevelopment; // Only default to true if env var is not set
+      : isDevelopment;
 
   console.log("  Final useKatanaAccounts:", useKatanaAccounts);
 
   return {
     useKatanaAccounts,
     isDevelopment,
-    rpcUrl: process.env.NEXT_PUBLIC_RPC_URL || "http://localhost:5050",
-    toriiUrl: process.env.NEXT_PUBLIC_TORII_URL || "http://localhost:8080",
-    relayUrl:
-      process.env.NEXT_PUBLIC_RELAY_URL || "  /ip4/127.0.0.1/tcp/9092/ws",
-    debug: process.env.NEXT_PUBLIC_DEBUG === "true" || isDevelopment,
+    rpcUrl: import.meta.env.VITE_RPC_URL || "http://localhost:5050",
+    toriiUrl: import.meta.env.VITE_TORII_URL || "http://localhost:8080",
+    relayUrl: import.meta.env.VITE_RELAY_URL || "/ip4/127.0.0.1/tcp/9092/ws",
+    debug: import.meta.env.VITE_DEBUG === "true" || isDevelopment,
   };
 };
 
