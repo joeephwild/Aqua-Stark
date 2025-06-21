@@ -1,53 +1,27 @@
-import { useDojoSDK } from "@dojoengine/sdk/react";
 import { Account, constants, RpcProvider } from "starknet";
+import { usePlayer } from "./hooks/dojo/usePlayer";
 
 export const Game = () => {
-  const { client } = useDojoSDK();
-  console.log("sdk", client);
-
-  const stringToFelt = (str: string) => {
-    // For short strings, convert directly to a single felt
-    if (str.length <= 31) {
-      const hexString = str
-        .split("")
-        .reduce((memo, c) => memo + c.charCodeAt(0).toString(16), "");
-      return BigInt("0x" + hexString);
-    }
-
-    // For longer strings, split into multiple felts (though this shouldn't be needed for usernames)
-    const size = Math.ceil(str.length / 31);
-    const arr = Array(size);
-
-    let offset = 0;
-    for (let i = 0; i < size; i++) {
-      const substr = str.substring(offset, offset + 31).split("");
-      const ss = substr.reduce(
-        (memo, c) => memo + c.charCodeAt(0).toString(16),
-        ""
-      );
-      arr[i] = BigInt("0x" + ss);
-      offset += 31;
-    }
-    return arr;
-  };
+  //  const { client } = useDojoSDK();
+  const { getPlayer } = usePlayer();
+  // const { handleNewAquarium } = useAquarium();
 
   const handleCall = async () => {
     try {
-      if (!client || !client.AquaStark) return alert("No client found");
-
       const provider = new RpcProvider({
         nodeUrl: "http://localhost:5050",
       });
 
       const account0 = new Account(
         provider,
-        "0x13d9ee239f33fea4f8785b9e3870ade909e20a9599ae7cd62c1c292b73af1b7",
-        "0x1c9053c053edf324aec366a34c6901b1095b07af69495bffec7d7fe21effb1b",
+        "0x17cc6ca902ed4e8baa8463a7009ff18cc294fa85a94b4ce6ac30a9ebd6057c7",
+        "0x14d6672dcb4b77ca36a887e9a11cd9d637d5012468175829e9c6e770c61642",
         undefined,
         constants.TRANSACTION_VERSION.V3
       );
-      // const usernameFelt = stringToFelt("joe");
-      const result = await client.AquaStark.getPlayer(account0.address);
+
+      // const result = await handleNewAquarium(account0, account0.address, 10);
+      const result = await getPlayer(account0.address);
       console.log("result", result);
     } catch (error) {
       console.error("error", error);

@@ -23,7 +23,7 @@ export function setupWorld(provider: DojoProvider) {
     snAccount: Account | AccountInterface,
     decoration: models.Decoration,
     aquariumId: BigNumberish
-  ): Promise<any> => {
+  ) => {
     try {
       return await provider.execute(
         snAccount,
@@ -54,7 +54,7 @@ export function setupWorld(provider: DojoProvider) {
     snAccount: Account | AccountInterface,
     fish: models.Fish,
     aquariumId: BigNumberish
-  ): Promise<any> => {
+  ) => {
     try {
       return await provider.execute(
         snAccount,
@@ -77,7 +77,7 @@ export function setupWorld(provider: DojoProvider) {
 
   const AquaStark_createAquariumId = async (
     snAccount: Account | AccountInterface
-  ): Promise<any> => {
+  ) => {
     try {
       return await provider.execute(
         snAccount,
@@ -100,7 +100,7 @@ export function setupWorld(provider: DojoProvider) {
 
   const AquaStark_createDecorationId = async (
     snAccount: Account | AccountInterface
-  ): Promise<any> => {
+  ) => {
     try {
       return await provider.execute(
         snAccount,
@@ -123,7 +123,7 @@ export function setupWorld(provider: DojoProvider) {
 
   const AquaStark_createFishId = async (
     snAccount: Account | AccountInterface
-  ): Promise<any> => {
+  ) => {
     try {
       return await provider.execute(
         snAccount,
@@ -146,7 +146,7 @@ export function setupWorld(provider: DojoProvider) {
 
   const AquaStark_createNewPlayerId = async (
     snAccount: Account | AccountInterface
-  ): Promise<any> => {
+  ) => {
     try {
       return await provider.execute(
         snAccount,
@@ -167,7 +167,7 @@ export function setupWorld(provider: DojoProvider) {
     };
   };
 
-  const AquaStark_getAquarium = async (id: BigNumberish): Promise<any> => {
+  const AquaStark_getAquarium = async (id: BigNumberish) => {
     try {
       return await provider.call(
         "aqua_stark",
@@ -189,7 +189,7 @@ export function setupWorld(provider: DojoProvider) {
     };
   };
 
-  const AquaStark_getDecoration = async (id: BigNumberish): Promise<any> => {
+  const AquaStark_getDecoration = async (id: BigNumberish) => {
     try {
       return await provider.call(
         "aqua_stark",
@@ -209,7 +209,7 @@ export function setupWorld(provider: DojoProvider) {
     };
   };
 
-  const AquaStark_getFish = async (id: BigNumberish): Promise<any> => {
+  const AquaStark_getFish = async (id: BigNumberish) => {
     try {
       return await provider.call(
         "aqua_stark",
@@ -229,7 +229,7 @@ export function setupWorld(provider: DojoProvider) {
     };
   };
 
-  const AquaStark_getPlayer = async (address: string): Promise<any> => {
+  const AquaStark_getPlayer = async (address: string) => {
     try {
       return await provider.call(
         "aqua_stark",
@@ -251,9 +251,7 @@ export function setupWorld(provider: DojoProvider) {
     };
   };
 
-  const AquaStark_getUsernameFromAddress = async (
-    address: string
-  ): Promise<any> => {
+  const AquaStark_getUsernameFromAddress = async (address: string) => {
     try {
       return await provider.call(
         "aqua_stark",
@@ -280,7 +278,7 @@ export function setupWorld(provider: DojoProvider) {
     snAccount: Account | AccountInterface,
     owner: string,
     maxCapacity: BigNumberish
-  ): Promise<any> => {
+  ) => {
     try {
       return await provider.execute(
         snAccount,
@@ -314,7 +312,7 @@ export function setupWorld(provider: DojoProvider) {
     description: BigNumberish,
     price: BigNumberish,
     rarity: BigNumberish
-  ): Promise<any> => {
+  ) => {
     try {
       return await provider.execute(
         snAccount,
@@ -348,7 +346,7 @@ export function setupWorld(provider: DojoProvider) {
     snAccount: Account | AccountInterface,
     owner: string,
     species: CairoCustomEnum
-  ): Promise<any> => {
+  ) => {
     try {
       return await provider.execute(
         snAccount,
@@ -374,7 +372,7 @@ export function setupWorld(provider: DojoProvider) {
   const AquaStark_register = async (
     snAccount: Account | AccountInterface,
     username: BigNumberish
-  ): Promise<any> => {
+  ) => {
     try {
       return await provider.execute(
         snAccount,
