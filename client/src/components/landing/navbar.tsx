@@ -10,11 +10,12 @@ import { useEffect, useState } from "react";
 import WalletModal from "../modal/walletConnectModal";
 
 import ControllerConnector from "@cartridge/connector/controller";
+import { useNavigate } from "react-router-dom";
 
 export function Navbar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [username, setUsername] = useState<string | null>(null);
-
+  const navigate = useNavigate();
   const { connect, connectors } = useConnect();
   const { disconnect } = useDisconnect();
   const { address, isConnected } = useAccount();
@@ -93,7 +94,12 @@ export function Navbar() {
             </button>
           </>
         )}
-
+        <button
+          onClick={() => navigate("/test-game")}
+          className="bg-[#ffff] text-[#000] px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+        >
+          Test Dojo Game
+        </button>
         <WalletModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}

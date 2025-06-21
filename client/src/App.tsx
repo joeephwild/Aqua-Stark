@@ -10,7 +10,6 @@ import {
 } from "@starknet-react/core";
 import { Route, Routes } from "react-router-dom";
 import { constants } from "starknet";
-import { Game } from "./Game.tsx";
 import Error404Page from "./pages/404.tsx";
 import AchievementsPage from "./pages/achievements.tsx";
 import AquariumsPage from "./pages/aquariums.tsx";
@@ -19,8 +18,10 @@ import EncyclopediaPage from "./pages/encyclopedia.tsx";
 import EventsCalendarPage from "./pages/events-calendar.tsx";
 import GamePage from "./pages/game.tsx";
 import HelpCenter from "./pages/help-center.tsx";
+import LandingPage from "./pages/landing-page.tsx";
 import MyProfile from "./pages/my-profile.tsx";
 import StorePage from "./pages/storage-page.tsx";
+import { Game } from "./Game.tsx";
 
 const cartridgeConnector = new ControllerConnector({
   chains: [
@@ -53,10 +54,11 @@ function App() {
         autoConnect={true}
       >
         <Routes>
-          <Route path="/" element={<Game />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/game" element={<GamePage />} />
           <Route path="/aquariums" element={<AquariumsPage />} />
           <Route path="/store" element={<StorePage />} />
+          <Route path="/test-game" element={<Game />} />
           {/* <Route
               path="/breeding-laboratory"
               element={<BreadingLaboratory />}
