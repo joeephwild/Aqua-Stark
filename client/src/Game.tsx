@@ -47,9 +47,7 @@ export const Game = () => {
         constants.TRANSACTION_VERSION.V3
       );
       // const usernameFelt = stringToFelt("joe");
-      const result = await client.AquaStark.getPlayer(
-        "0x13d9ee239f33fea4f8785b9e3870ade909e20a9599ae7cd62c1c292b73af1b7"
-      );
+      const result = await client.AquaStark.getPlayer(account0.address);
       console.log("result", result);
     } catch (error) {
       console.error("error", error);
